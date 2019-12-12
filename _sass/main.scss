@@ -1,0 +1,107 @@
+@import "fonts";
+@import "rouge-github";
+
+@charset "utf-8";
+
+// Define defaults for each variable.
+$base-font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$base-font-size:   16px !default;
+$base-font-weight: 400 !default;
+$small-font-size:  $base-font-size * 0.875 !default;
+$base-line-height: 1.65 !default;
+
+$spacing-unit:     30px !default;
+
+$text-color:       #111 !default;
+$background-color: #fdfdfd !default;
+$brand-color:      #e01f1f !default;
+
+$grey-color:       #828282 !default;
+$grey-color-light: lighten($grey-color, 40%) !default;
+$grey-color-dark:  darken($grey-color, 25%) !default;
+
+$crimson-color:         #e01f1f;
+$crimson-color-light:   #f9493f;
+$crimson-color-very-light:   lighten($crimson-color, 40%) !default;
+$crimson-color-dark:    #b71212;
+
+$orange-color:          #ff8f26;
+
+// color variables from sleek
+$primary: #277cea !default;
+$secondary: #ff6161 !default;
+$border: #ededed !default;
+$primary-light: #68a4f1;
+$reverse: #3c3d41 !default;
+$success: #8fd896 !default;
+$error: #ff6161 !default;
+
+$bg-color: #e7eff6 !default;
+$light-bg-color: #f9f9f9;
+$text-color: #343851;
+$heading-color: #313237;
+$link-color: $primary;
+$button-dark: #222325;
+$dark-light: #313237;
+$outline: #dbdbdb;
+$grey: #838c8d;
+$blue-dark: #005b96;
+$blue-medium: #4b86b4;
+$blue-light: #adcbe3;
+$blue-whight: #e7eff6;
+$blue-blue: #63ace5;
+
+$font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+
+// Breakpoints
+$xs: 0;
+$sm: 36em; //576px
+$md: 48em; //768px
+$lg: 62em; //992px
+$xl: 75em; //1200px
+
+// Code
+$code-bg-color: #f6f8fa !default;
+$code-text-color: #25292e !default;
+
+// Borders
+$border-color: #dce6f0 !default;
+
+// color variables from sleek done
+
+
+// Width of the content area
+$content-width:    800px !default;
+
+$on-palm:          600px !default;
+$on-laptop:        800px !default;
+
+// Use media queries like this:
+// @include media-query($on-palm) {
+//   .wrapper {
+//     padding-right: $spacing-unit / 2;
+//     padding-left: $spacing-unit / 2;
+//   }
+// }
+@mixin media-query($device) {
+  @media screen and (max-width: $device) {
+    @content;
+  }
+}
+
+@mixin relative-font-size($ratio) {
+  font-size: $base-font-size * $ratio;
+}
+
+// Import partials.
+@import
+  "minima/base",
+  "minima/layout",
+  "sleek/nav"
+;
+
+hr { background-color: $blue-light;
+    color: $blue-medium;
+    background-color: $blue-light;
+    height: 2px;
+    border: 0; }

@@ -1,0 +1,28 @@
+title: Jinwei Space
+name: "Jinwei's Space"
+author: Jinwei Xing
+baseurl: ""
+description: Document my learning notes.
+profile_url: "http://karlxing.github.io"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+excerpt_separator: <!--more-->
+plugins:
+  - jekyll-feed
+  - jekyll-archives
+exclude:
+  - Gemfile
+  - Gemfile.lock
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
+
+navigation: # Navigation links
+  - {name: 'Intelligence', link: '/'}
+  - {name: 'Investment', link: '/invest.html'}
+  - {name: 'Archive', link: '/archive.html'}
+  - {name: 'Tag', link: '/tags.html'}
+  - {name: 'Contact', link: '/contact.html'}
