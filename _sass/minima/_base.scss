@@ -13,7 +13,7 @@ hr {
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid $crimson-color-very-light;
+    border-top: 1px solid $blue-medium;
     margin: 2em 0;
     padding: 0; 
 }
@@ -54,7 +54,7 @@ body {
 .table-of-content {
   li {
     font-size: 96%;
-    color: $brand-color;
+    color: $blue-medium;
     list-style-type: disc;
   }
 }
@@ -185,17 +185,17 @@ h1, h2, h3, h4, h5, h6 {
  * Links
  */
 a {
-  color: $brand-color;
+  color: $blue-medium;
   text-decoration: none;
 
 /**
   &:visited {
-   color: $brand-color;
+   color: $blue-medium;
   }
   */
 
   &:hover {
-    color: $crimson-color-light;
+    color: $blue-medium;
     text-decoration: underline;
   }
 
