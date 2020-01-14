@@ -315,3 +315,12 @@ pre {
     padding-top: 5px;
   }
 }
+
+.mbtablestyle {
+        border-collapse: collapse;
+  margin: 20px auto;
+
+   > table, td, th {
+        border: 1px solid black;
+        }
+}

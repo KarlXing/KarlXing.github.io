@@ -40,7 +40,7 @@ layout: default
   {% endfor %}
   
   <hr>
-  <h3> Investment </h3>
+  <h3> Other </h3>
   {% for temp_tag in sorted_temp_tags %}
     {% assign tag_items = temp_tag | split: '#' %}
     {% if investtags contains tag_items[0] %}
