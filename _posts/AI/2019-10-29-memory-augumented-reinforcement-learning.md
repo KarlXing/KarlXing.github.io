@@ -27,7 +27,7 @@ As one of the most important capabilities of animals, memory is the process of s
 |NTM|Matrix|Partial Observation|Attentional read and write based on addressing mechanisms|
 |DNC|Matrix|Partial Observation|New attention mechanism (temporal links & memory usage record)|
 |Neural Map|2D Memory Image|Partial Observation|Simplified DNC without complicated attention mechanism, but requires oracle of current position|
-|MERLIN|
+|MERLIN|Matrix|Partial Observation|Predictive modeling for memory writing|
 {:.mbtablestyle}
 
 ### Model Free Episodic Control
@@ -103,6 +103,26 @@ DNC is the successor of NTM. The difference is on addressing mechanisms.
 ### Neural Map
 Neural map used spatially structured 2D memory image $$M$$ for information storage. The information stored at  $$M^{(x,y)}$$ represents what the agent met when it reached position $$(x,y)$$ of the environment. As a result, it requires oracle to provide the position of the agent and the environments are limited to 2D or 3D tasks. Like DNC, it also defines differentiable read and write operations over the memory. However, because we know how $$M$$ is designed , the attention mechanism in DNC is much simplified. For reading, neural map defines global read which summarizes information about the entire map and conetext read which retrieve information from the map based on current state via soft attention. For writing, $$w_{t+1}^{x_t, y_t}$$ is the output of a neural network which takes global read, context read, state embedding and memory as input.
 
+### MERLIN
+To solve the problem of partial observation, we need to answer the question of what to store in the memory. NTM and DNC proposed to do everything including deciding what information to store via end-to-end graident-based training like figure below.
+
+![RL-mem]({{'/assets/images/RL-mem.png'|relative-url}}){:style="width:40%"; class="center"}
+<center><i>Fig 6. A demonstration of RL system with external memory. The write operation on memory is from the recurrent neural networks and thus trained via end-to-end gradient descent. </i></center> 
+<br/>
+For this question, MERLIN proposed to compress the states via predictive modeling. It's composed of a memory-based predictor (**MBP**) which compresses observations and store compressed states and a policy neural network which could only read from the memory. The training of predictive modeling is via variational autoencoder. The difference from typical VAE in computer vision is that the prior distribution here is not a fixed distribution like Guassian, instead it's from the history/memory. 
+
+![merlin]({{'/assets/images/merlin.png'|relative-url}})
+
+<br/>
+
+The process of MERLIN could be divided into several steps
+1. Take action $$a_{t_1}$$ in the environment and get observation $$o_t$$ which is encoded into $$e_t$$ by the encoder.
+2. Recurrent neural net $$h_t$$ takes state variable $$z_{t-1}$$ and reading from memory $$m_t$$ in and outputs the prior distribution $$p$$
+3. Neural network $$n_t$$ corrects prior $$p$$ with current observation $$e_t$$ and generates the posterior distribution $$q$$
+4. State variable $$z_t$$ is sampled from $$q$$. Then it's used for observation reconstruction and written to memory $$M$$.
+5. In policy, recurrent neural network $$\tilde{h_t}$$ reads $$\tilde{m_t}$$ from memory and its output is fed into $$\tilde{n_t}$$ alongside with $$z_t$$ and $$\tilde{m_t}$$ for action selection.
+6. The training of MBP and Policy are separate. The training in MBP is training VAE based on reconstruction loss and KL divergence while the training of policy is typical algorithms in deep reinforcement learning.
+
 
 ## References
 1. Blundell, C., Uria, B., Pritzel, A., Li, Y., Ruderman, A., Leibo, J., Rae, J., Wierstra, D., Hassabis, D. (2016). [Model-Free Episodic Control](https://arxiv.org/abs/1606.04460)  
@@ -111,4 +131,5 @@ Neural map used spatially structured 2D memory image $$M$$ for information stora
 4. Graves, A., Wayne, G., Danihelka, I. (2014). [Neural Turing Machines](https://arxiv.org/abs/1410.5401)
 5. Graves, A., Wayne, G., Reynolds, M., Harley, T., Danihelka, I., Grabska-Barwińska, A., Colmenarejo, S., Grefenstette, E., Ramalho, T., Agapiou, J., Badia, A., Hermann, K., Zwols, Y., Ostrovski, G., Cain, A., King, H., Summerfield, C., Blunsom, P., Kavukcuoglu, K., Hassabis, D. (2016). [Hybrid computing using a neural network with dynamic external memory Nature  538(7626), 471-476.](https://dx.doi.org/10.1038/nature20101)
 6. Parisotto, E., Salakhutdinov, R. (2017). [Neural Map: Structured Memory for Deep Reinforcement Learning](https://arxiv.org/abs/1702.08360)
+7. Wayne, G., Hung, C., Amos, D., Mirza, M., Ahuja, A., Grabska-Barwinska, A., Rae, J., Mirowski, P., Leibo, J., Santoro, A., Gemici, M., Reynolds, M., Harley, T., Abramson, J., Mohamed, S., Rezende, D., Saxton, D., Cain, A., Hillier, C., Silver, D., Kavukcuoglu, K., Botvinick, M., Hassabis, D., Lillicrap, T. (2018). [Unsupervised Predictive Memory in a Goal-Directed Agent](https://arxiv.org/abs/1803.10760)
 
