@@ -12,6 +12,7 @@ excerpt_separator: <!--more-->
 plugins:
   - jekyll-feed
   - jekyll-archives
+  - jekyll/tagging
 exclude:
   - Gemfile
   - Gemfile.lock
@@ -19,10 +20,11 @@ kramdown:
   input: GFM
   auto_ids: true
   syntax_highlighter: rouge
-
+tag_page_layout: tagpage
+tag_page_dir: /tag
 navigation: # Navigation links
   - {name: 'Intelligence', link: '/'}
-  - {name: 'Other', link: '/invest.html'}
+  - {name: 'Other', link: '/other.html'}
   - {name: 'Archive', link: '/archive.html'}
   - {name: 'Tag', link: '/tags.html'}
   - {name: 'Contact', link: '/contact.html'}
