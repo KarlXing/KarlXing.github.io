@@ -2,7 +2,7 @@
 layout: post
 comments: true
 title: "Snacks In Philosophy And Religions"
-date: 2019-12-08 00:00:00
+date: 2021-01-02 00:00:00
 tags: buddhism religion
 cate: Philosophy-of-Religion
 ---
@@ -37,7 +37,7 @@ cate: Philosophy-of-Religion
 1. 意根的输入（法尘）就是六识，包括意识
 2. 意根本身也存在于精神层面，但是和六识当然是不同的，所以佛教称其为第七识（末那识）  
 
-然后有趣的问题就是为什么意根的输入还包括意根的输出呢？因为意根就是一个循环神经网络...上一时刻意根的输出会成为一下时刻意根的输入。其实六根六尘六识用神经网络来解释也挺好的，眼耳鼻舌身五根就是feedforward networks，意根是一个recurrent neural networks。对于意根来说，在每个时刻，眼耳鼻舌身五根先对对应的五尘做一个preprocessing，再和意根上一时刻的输出concatenate到一起，一起作为意根的输入，最后输出这一时刻的意识。
+然后有趣的问题就是为什么意根的输入还包括意根的输出呢？因为意根就是一个循环神经网络...上一时刻意根的输出会成为一下时刻意根的输入。其实六根六尘六识用神经网络来解释也挺好的，眼耳鼻舌身五根就是feedforward networks，意根是一个recurrent neural network。对于意根来说，在每个时刻，眼耳鼻舌身五根先对对应的五尘做一个preprocessing，再和意根上一时刻的输出concatenate到一起，一起作为意根的输入，最后输出这一时刻的意识。
 
 <br>
 ![循环神经网络]({{ '/assets/images/sixroots_nn.png' | relative_url }})
