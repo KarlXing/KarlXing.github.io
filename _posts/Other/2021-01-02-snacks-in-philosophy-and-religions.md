@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-title: "Snacks In Philosophy And Religions"
+title: "Snacks In Philosophy And Religion"
 date: 2021-01-02 00:00:00
 tags: buddhism religion
 cate: Philosophy-of-Religion
